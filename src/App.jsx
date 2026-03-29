@@ -28,7 +28,7 @@ function App () {
                     <button type="button" className="btn btn-outline-dark" onClick={() => {
                         setDefault(cntr);
                         setCntr("");
-                        }}>change</button>
+                        }}>change please</button>
                 </div>
             </div>
         </div>
