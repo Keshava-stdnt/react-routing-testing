@@ -8,6 +8,7 @@ function IncrementContext({children}) {
 
     let defVal = -1;
     let [counter, setCounter] = useState(defVal);
+    let [history, setHistory] = useState([]);
 
     let fetchDefaultVal = async () => {
         try {let res = await fetch("http://localhost:3000/settings", {method: "GET"});
@@ -25,10 +26,18 @@ function IncrementContext({children}) {
     }, []);
 
     let increment = () => {
-        setCounter(counter + 1);
+        setCounter(prev => {
+            let newVal = prev + 1;
+            setHistory(h => [...h, {action: 'increment', value: newVal, timestamp: new Date().toLocaleTimeString()}]);
+            return newVal;
+        });
     }
     let decrement = () => {
-        setCounter(counter - 1);
+        setCounter(prev => {
+            let newVal = prev - 1;
+            setHistory(h => [...h, {action: 'decrement', value: newVal, timestamp: new Date().toLocaleTimeString()}]);
+            return newVal;
+        });
     }
     
     let reset = () => {
@@ -45,10 +54,11 @@ function IncrementContext({children}) {
         console.log(res);
         console.log("inside setDefault");
         await fetchDefaultVal();
+        setHistory(h => [...h, {action: 'setDefault', value: numVal, timestamp: new Date().toLocaleTimeString()}]);
     }
 
     return (
-        <incrementContextCreation.Provider value={{counter, increment, decrement, reset, setDefault}}>
+        <incrementContextCreation.Provider value={{counter, increment, decrement, reset, setDefault, history}}>
             {children}
         </incrementContextCreation.Provider>
     );
