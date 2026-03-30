@@ -47,8 +47,6 @@ function IncrementContext({children}) {
         await fetchDefaultVal();
     }
 
-    // setTimeout(()
-
 
     return (
         <incrementContextCreation.Provider value={{counter, increment, decrement, reset, setDefault}}>
