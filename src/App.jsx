@@ -2,6 +2,7 @@
 import Child1 from "./components/Child1";
 import Child2 from "./components/Child2";
 import Api from "./components/Api";
+import History from "./components/History";
 import { useContext, useState } from "react";
 import { incrementContextCreation } from "./context/IncrementContext";
 
@@ -26,6 +27,9 @@ function App() {
                     </div>
                     <div className="dashboard-card">
                         <Api />
+                    </div>
+                    <div className="dashboard-card">
+                        <History />
                     </div>
                     <div className="dashboard-card controls-card">
                         <h3>Controls</h3>
