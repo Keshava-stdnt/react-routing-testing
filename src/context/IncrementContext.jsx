@@ -47,7 +47,7 @@ function IncrementContext({children}) {
         await fetchDefaultVal();
     }
 
-    // setTimeout(()
+    // setTimeout
 
 
     return (
